@@ -1,4 +1,4 @@
 interface:
   display_name: "MovieOS"
-  short_description: "스토리를 캐릭터 시트와 숏별 시작 이미지·영상 프롬프트로 제작"
-  default_prompt: "$movieos로 내 이야기의 화풍과 길이를 추천하고, 캐릭터 시트와 숏별 시작 이미지 및 영상 프롬프트를 만들어줘."
+  short_description: "스토리를 캐릭터 시트와 씬별 시작 이미지·영상 프롬프트로 제작"
+  default_prompt: "$movieos로 쇼츠·정보성 유튜브·스토리 영상 중 유형을 먼저 확인하고, 화풍과 길이 및 씬별 모델을 추천한 뒤, 캐릭터 시트와 씬별 시작 이미지 및 영상 프롬프트를 만들어줘."

@@ -16,7 +16,7 @@ LIGHTING & COLOR: Even neutral illumination; preserve the selected style and con
 CONTINUITY & AVOID: Same original person in every panel; no text, labels, watermark or unrelated props.
 ```
 
-## 숏 카드 맨 위
+## 씬 시간·모델 카드 (영상 프롬프트 아래)
 
 ```text
 SUPPORTED DURATION: [verified durations for this exact model/mode, or UNVERIFIED]
@@ -34,12 +34,12 @@ RESOLUTION: 1080p target | Center-safe 16:9 | [support verification]
 MODEL SELECTION REASON: [one grounded sentence; do not invent comparative performance]
 ```
 
-위 시간 블록 다음에 장면 목적, 사용 캐릭터·참조 파일, 시작 이미지 프롬프트와 이미지, 영상 프롬프트를 순서대로 제공한다.
+나레이션 다음 영문 영상 프롬프트를 펼쳐 보여주고 이 시간 블록은 아래의 상세 영역에 배치한다.
 
 ## 시작 이미지 프롬프트
 
 ```text
-PROJECT: [Title] | SCENE: [SC01] | SHOT: [SH001] | STYLE: [selected style]
+PROJECT: [Title] | SCENE: [번호] | STYLE: [selected style]
 ART STYLE: [selected style specification]
 CHARACTER ANCHOR: [locked ID plus full appearance; attached reference image mapping]
 CHARACTER STATE & ACTION: At time 0.0, [single frozen pose, gaze, position, expression].
@@ -53,7 +53,8 @@ CONTINUITY & AVOID: Single 16:9 center-safe cinematic frame; preserve reference 
 ## 영상 프롬프트
 
 ```text
-PROJECT: [Title] | SCENE: [SC01] | SHOT: [SH001] | STYLE: [selected style]
+씬 [번호]:
+PROJECT: [Title] | SCENE: [번호] | STYLE: [selected style]
 ART STYLE: [selected style specification]
 CHARACTER ANCHOR: [locked ID, full appearance and input image mapping]
 CHARACTER STATE & ACTION: [time intervals matching BEAT MAP, precise movement and expression]
@@ -68,4 +69,20 @@ END STATE & CONNECTION: [final pose, gaze, props and transition to next shot]
 CONTINUITY & AVOID: Start from the supplied first frame; consistent character identity; 16:9 center-safe; no subtitles, text, watermark or music; [style-specific exclusions].
 ```
 
-한국어 대응 필드: 작품명 / 장면 / 숏 / 연출 화풍 / 화풍 규격 / 캐릭터 앵커 / 캐릭터 동작 및 연기 / 복식 및 소품 / 공간 및 배경 / 구도 및 연출 / 조명 및 색채 / 대사 언어 / 대사 / 소리 / 종료 상태 및 연결 / 연속성 및 배제 요소.
+한국어 대응 필드: 작품명 / 장면 / 씬 / 연출 화풍 / 화풍 규격 / 캐릭터 앵커 / 캐릭터 동작 및 연기 / 복식 및 소품 / 공간 및 배경 / 구도 및 연출 / 조명 및 색채 / 대사 언어 / 대사 / 소리 / 종료 상태 및 연결 / 연속성 및 배제 요소.
+
+## 표시 순서
+
+각 씬 제목 → 읽기용 나레이션 → 펼쳐진 영문 영상 프롬프트 → 접힌 한국어 번역 → 모델 추천과 이유 → 이미지 쌍 → 이미지 프롬프트와 시간·모델 메타데이터. 영상 프롬프트 첫 줄은 `씬 1:`처럼 표시한다.
+
+각 씬의 발화에는 `pre`/`code`를 쓰지 않는다. 웹 상단에 전체 음성변환용 대본을 복사용 코드블록으로 한 번 둔다. ‘나레이션 먼저 읽기’와 하단 중복 대본은 만들지 않는다. 제목 후보는 정확히 5개, 설명에는 관련 해시태그를 포함하고 논문 링크는 넣지 않는다.
+
+무대사·별도 나레이션 영상의 프롬프트에는 다음을 포함한다.
+
+```text
+DIALOGUE: NONE.
+NARRATION: NONE. VOICEOVER: NONE.
+Audio: no narration, no dialogue, no voice-over, no spoken words.
+```
+
+등장인물 대사가 요청된 영화에는 음성 전체 금지 문장을 적용하지 않는다.
