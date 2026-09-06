@@ -64,7 +64,9 @@ LAYOUT & CAMERA: [shot size, angle, one camera movement or static; axis and eyel
 LIGHTING & COLOR: [same lighting and palette as first frame]
 DIALOGUE LANGUAGE: [Korean / English]
 DIALOGUE: [speaker, exact line and interval; NONE if silent]
-SOUND: [ambience, breathing, footsteps]; MUSIC OFF.
+SFX: [timed cue 1 linked to action; timed cue 2; texture, intensity and decay; editorial/non-diegetic if appropriate].
+AMBIENCE: [appropriate environment or NONE]. MUSIC OFF.
+NARRATION: NONE. VOICEOVER: NONE.
 END STATE & CONNECTION: [final pose, gaze, props and transition to next shot]
 CONTINUITY & AVOID: Start from the supplied first frame; consistent character identity; 16:9 center-safe; no subtitles, text, watermark or music; [style-specific exclusions].
 ```
@@ -86,3 +88,27 @@ Audio: no narration, no dialogue, no voice-over, no spoken words.
 ```
 
 등장인물 대사가 요청된 영화에는 음성 전체 금지 문장을 적용하지 않는다.
+
+## 다른 구도의 설명 이미지
+
+시작 이미지 프롬프트와 별도 블록으로 출력한다. 결과는 실제 이미지 한 장이다.
+
+```text
+SCENE: [번호] | ROLE: Alternate explanatory image
+REFERENCE: [approved identity reference, actually attached]
+VIEWPOINT CHANGE: [opening angle/framing] → [clearly different angle/framing]
+EXPLANATION CHANGE: [visible exterior] → [cutaway / density comparison / light-path diagram / exploded view]
+SUBJECT & ACTION: [one still image explaining this scene, consistent subject identity]
+COMPOSITION & LIGHT: [new composition; correct light direction and physical relationships]
+AVOID: Near-duplicate of first frame, simple crop, mirroring, color-only change, inaccurate mechanism, text, watermark.
+```
+
+## 효과음 예시 (영문·한국어 프롬프트에 동일 반영)
+
+```text
+SFX: Editorial, non-diegetic sound design. 0–1s short low impact for the reveal; 2–4s soft airy sweep following the diagram transition; 5–6s subtle click at the highlighted contact, quick decay. Moderate volume, space for separately added narration.
+NARRATION: NONE. VOICEOVER: NONE. DIALOGUE: NONE.
+Audio: no narration, no dialogue, no voice-over, no spoken words. MUSIC OFF.
+```
+
+이 예시를 모든 씬에 복사하지 말고 실제 행동에 맞게 효과음·시점을 바꾼다. 사용자 무음 요청이 없으면 음성 금지와 함께 전체 무음 지시를 넣지 않는다.
