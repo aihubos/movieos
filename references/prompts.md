@@ -2,6 +2,12 @@
 
 대괄호는 채워 넣을 자리다. 최종 프롬프트에는 실제 내용을 쓴다. 영문과 한국어 번역은 서로 다른 코드 블록으로 출력한다. 대사는 어느 블록에서도 선택 언어의 원문 그대로 둔다.
 
+## 선택한 이미지 구성 적용
+
+- 초반 답변의 첫 프레임 생성 여부와 씬별 추가 관련 이미지 수량을 따른다. 첫 프레임은 씬당 0장 또는 1장, 추가 이미지는 씬당 N장이며 서로 별개다.
+- 첫 프레임을 생성하지 않으면 시작 이미지 프롬프트·업로드 안내·`Start from the supplied first frame` 지시를 생략하고 실제 텍스트·기준 참조 입력에 맞춘다. 없는 파일이나 `FIRST_FRAME`을 참조하지 않는다.
+- 관련 이미지 양식은 선택한 장수만큼 각각 작성한다. 0장이면 생략한다. 두 종류 모두 0장이어도 씬별 영상 프롬프트와 웹 가이드는 반드시 만든다.
+
 ## 캐릭터 시트
 
 ```text
@@ -91,10 +97,10 @@ Audio: no narration, no dialogue, no voice-over, no spoken words.
 
 ## 다른 구도의 설명 이미지
 
-시작 이미지 프롬프트와 별도 블록으로 출력한다. 결과는 실제 이미지 한 장이다.
+첫 프레임 프롬프트와 별도 블록으로 출력한다. `관련 이미지 1…N`으로 번호를 붙이고 선택한 장수만큼 각각 실제 생성한다. 첫 프레임이 없으면 기본 구도·기준 시트와 다른 관련 이미지를 기준으로 시점과 설명 방식의 차이를 적는다.
 
 ```text
-SCENE: [번호] | ROLE: Alternate explanatory image
+SCENE: [번호] | ROLE: Related explanatory image [1…N]
 REFERENCE: [approved identity reference, actually attached]
 VIEWPOINT CHANGE: [opening angle/framing] → [clearly different angle/framing]
 EXPLANATION CHANGE: [visible exterior] → [cutaway / density comparison / light-path diagram / exploded view]
