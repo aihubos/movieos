@@ -1,6 +1,6 @@
 # 출력 양식
 
-대괄호는 채워 넣을 자리다. 최종 프롬프트에는 실제 내용을 쓴다. 영문과 한국어 번역은 서로 다른 코드 블록으로 출력한다. 대사는 어느 블록에서도 선택 언어의 원문 그대로 둔다.
+대괄호는 채워 넣을 자리다. 최종 프롬프트에는 실제 내용을 쓴다. 영문과 한국어 번역은 서로 다른 코드 블록으로 출력한다. 대사는 어느 블록에서도 선택 언어의 원문 그대로 둔다. 실제 참조 파일 경로·사용자 승인 상태는 코드블록 밖의 업로드 안내에 두고, 생성 도구에는 해당 이미지를 실제 첨부한다.
 
 ## 선택한 이미지 구성 적용
 
@@ -25,18 +25,18 @@ CONTINUITY & AVOID: Same original person in every panel; no text, labels, waterm
 ## 씬 시간·모델 카드 (영상 프롬프트 아래)
 
 ```text
-SUPPORTED DURATION: [verified durations for this exact model/mode, or UNVERIFIED]
-DURATION LOCK: [4s / 6s / 8s / 10s selected within verified support; pending if not verified]
+SUPPORTED DURATION: [actual durations confirmed for this exact model/mode, or UNVERIFIED]
+DURATION LOCK: [duration confirmed for this exact model/mode, or UNVERIFIED directing target]
 DURATION REASON: [emotion, action and dialogue needs]
 BEAT MAP:
 0.0–[t1]s: [action/dialogue]
 [t1]–[end]s: [action/dialogue; END STATE; next-shot connection]
-TOTAL DURATION CHECK: [sum of interval lengths] = [DURATION LOCK]; [MATCH or pending]
+TOTAL DURATION CHECK: [sum of interval lengths] = [numeric directing target]; [MATCH / MISMATCH, independent of support verification]
 TARGET MODEL: [verified model name or candidate marked UNVERIFIED]
 FALLBACK MODEL: [verified alternative or NONE]
 FLOW MODE: [verified Text to Video / First Frame to Video / Image to Video equivalent]
 DURATION: [same as DURATION LOCK]
-RESOLUTION: 1080p target | Center-safe 16:9 | [support verification]
+RESOLUTION: 1080p target | [selected aspect ratio], center-safe composition | [support verification]
 MODEL SELECTION REASON: [one grounded sentence; do not invent comparative performance]
 ```
 
@@ -47,13 +47,13 @@ MODEL SELECTION REASON: [one grounded sentence; do not invent comparative perfor
 ```text
 PROJECT: [Title] | SCENE: [번호] | STYLE: [selected style]
 ART STYLE: [selected style specification]
-CHARACTER ANCHOR: [locked ID plus full appearance; attached reference image mapping]
+CHARACTER ANCHOR: [production reference ID/version and full appearance; reference image actually attached]
 CHARACTER STATE & ACTION: At time 0.0, [single frozen pose, gaze, position, expression].
 COSTUME & PROPS: [exact costume and prop state]
 LOCATION & ENVIRONMENT: [story-specific location; foreground, midground, background]
 LAYOUT & CAMERA: [shot size, angle, opening composition; single frame]
 LIGHTING & COLOR: [fixed time of day, light direction and palette]
-CONTINUITY & AVOID: Single 16:9 center-safe cinematic frame; preserve reference identity; no reference-sheet panels, white studio background unless the story calls for it, text or watermark; [style-specific exclusions].
+CONTINUITY & AVOID: Single [selected aspect ratio], center-safe cinematic frame; preserve the production reference identity; no reference-sheet panels, white studio background unless the story calls for it, text or watermark; [style-specific exclusions].
 ```
 
 ## 영상 프롬프트
@@ -62,26 +62,26 @@ CONTINUITY & AVOID: Single 16:9 center-safe cinematic frame; preserve reference 
 씬 [번호]:
 PROJECT: [Title] | SCENE: [번호] | STYLE: [selected style]
 ART STYLE: [selected style specification]
-CHARACTER ANCHOR: [locked ID, full appearance and input image mapping]
+CHARACTER ANCHOR: [production reference ID/version and full appearance; input images actually attached]
 CHARACTER STATE & ACTION: [time intervals matching BEAT MAP, precise movement and expression]
 COSTUME & PROPS: [fixed details and intentional changes]
-LOCATION & ENVIRONMENT: [same place as first frame]
+LOCATION & ENVIRONMENT: [same place as the first frame when one exists; otherwise the established scene location]
 LAYOUT & CAMERA: [shot size, angle, one camera movement or static; axis and eyeline]
-LIGHTING & COLOR: [same lighting and palette as first frame]
+LIGHTING & COLOR: [same lighting and palette as the first frame when one exists; otherwise the established scene lighting and palette]
 DIALOGUE LANGUAGE: [Korean / English]
 DIALOGUE: [speaker, exact line and interval; NONE if silent]
 SFX: [timed cue 1 linked to action; timed cue 2; texture, intensity and decay; editorial/non-diegetic if appropriate].
 AMBIENCE: [appropriate environment or NONE]. MUSIC OFF.
 NARRATION: NONE. VOICEOVER: NONE.
 END STATE & CONNECTION: [final pose, gaze, props and transition to next shot]
-CONTINUITY & AVOID: Start from the supplied first frame; consistent character identity; 16:9 center-safe; no subtitles, text, watermark or music; [style-specific exclusions].
+CONTINUITY & AVOID: [When a first frame exists, start from the supplied first frame; otherwise start from the provided text and production references]; consistent character identity; [selected aspect ratio], center-safe; no subtitles, text, watermark or music; [style-specific exclusions].
 ```
 
 한국어 대응 필드: 작품명 / 장면 / 씬 / 연출 화풍 / 화풍 규격 / 캐릭터 앵커 / 캐릭터 동작 및 연기 / 복식 및 소품 / 공간 및 배경 / 구도 및 연출 / 조명 및 색채 / 대사 언어 / 대사 / 소리 / 종료 상태 및 연결 / 연속성 및 배제 요소.
 
 ## 표시 순서
 
-각 씬 제목 → 읽기용 나레이션 → 펼쳐진 영문 영상 프롬프트 → 접힌 한국어 번역 → 모델 추천과 이유 → 이미지 쌍 → 이미지 프롬프트와 시간·모델 메타데이터. 영상 프롬프트 첫 줄은 `씬 1:`처럼 표시한다.
+각 씬 제목 → 읽기용 나레이션 → 펼쳐진 영문 영상 프롬프트 → 접힌 한국어 번역 → 모델 추천과 이유 → 사용자가 선택한 이미지 종류·수량 → 이미지 프롬프트와 시간·모델 메타데이터. 영상 프롬프트 첫 줄은 `씬 1:`처럼 표시한다.
 
 각 씬의 발화에는 `pre`/`code`를 쓰지 않는다. 웹 상단에 전체 음성변환용 대본을 복사용 코드블록으로 한 번 둔다. ‘나레이션 먼저 읽기’와 하단 중복 대본은 만들지 않는다. 제목 후보는 정확히 5개, 설명에는 관련 해시태그를 포함하고 논문 링크는 넣지 않는다.
 
@@ -97,16 +97,16 @@ Audio: no narration, no dialogue, no voice-over, no spoken words.
 
 ## 다른 구도의 설명 이미지
 
-첫 프레임 프롬프트와 별도 블록으로 출력한다. `관련 이미지 1…N`으로 번호를 붙이고 선택한 장수만큼 각각 실제 생성한다. 첫 프레임이 없으면 기본 구도·기준 시트와 다른 관련 이미지를 기준으로 시점과 설명 방식의 차이를 적는다.
+첫 프레임을 선택한 경우에는 첫 프레임 프롬프트와 별도 블록으로 출력한다. `관련 이미지 1…N`으로 번호를 붙이고 선택한 장수만큼 각각 실제 생성한다. 첫 프레임이 없으면 시작 이미지 블록을 만들지 않고 기본 구도·기준 시트와 다른 관련 이미지를 기준으로 시점과 설명 방식의 차이를 적는다.
 
 ```text
 SCENE: [번호] | ROLE: Related explanatory image [1…N]
-REFERENCE: [approved identity reference, actually attached]
+REFERENCE: [production reference ID/version; reference image actually attached]
 VIEWPOINT CHANGE: [opening angle/framing] → [clearly different angle/framing]
 EXPLANATION CHANGE: [visible exterior] → [cutaway / density comparison / light-path diagram / exploded view]
 SUBJECT & ACTION: [one still image explaining this scene, consistent subject identity]
 COMPOSITION & LIGHT: [new composition; correct light direction and physical relationships]
-AVOID: Near-duplicate of first frame, simple crop, mirroring, color-only change, inaccurate mechanism, text, watermark.
+AVOID: [If a first frame exists, near-duplicate of it; otherwise near-duplicate of the established base composition], simple crop, mirroring, color-only change, inaccurate mechanism, text, watermark.
 ```
 
 ## 효과음 예시 (영문·한국어 프롬프트에 동일 반영)
